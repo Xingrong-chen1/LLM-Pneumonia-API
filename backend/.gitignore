@@ -1,0 +1,15 @@
+.DS_Store
+*.swp
+*.swo
+*.swn
+*.log
+
+.vscode/
+
+.ipynb_checkpoints/
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
