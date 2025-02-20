@@ -17,7 +17,7 @@ jobs:
       - name: Build Backend Docker image
         run: |
           docker build -t ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest -f backend/dockerfile ./backend
-          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest ghcr.io/Xingrong-chen1/llm-pneumonia-api/backend:${{ github.sha }}
+          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:${{ github.sha }}
 
       - name: Log in to the registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
