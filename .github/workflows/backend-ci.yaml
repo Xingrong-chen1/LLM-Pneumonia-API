@@ -1,0 +1,28 @@
+name: backend CI/CD
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build Backend Docker image
+        run: |
+          docker build -t ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/backend:latest -f backend/dockerfile ./backend
+          docker tag ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/backend:latest ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/backend:${{ github.sha }}
+
+      - name: Log in to the registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push the Docker image
+        run: |
+          docker push ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/backend:${{ github.sha }}
+          docker push ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/backend:latest

@@ -1,10 +1,11 @@
+import os
 import streamlit as st
 import requests
 import io
 from PIL import Image
 
 
-API_URL = "http://backend:8000/api/predict"
+API_URL = os.getenv("BACKEND_URL", "http://localhost:8000/api/predict")
 
 
 st.title("Pneumonia Detection App")
