@@ -20,7 +20,7 @@ jobs:
       - name: Build Frontend Docker image
         run: |
           docker build -t ghcr.io/xingrong-chen1/llm-pneumonia-api/frontend:latest -f frontend/Dockerfile ./frontend
-          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/frontend:latest ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:${{ github.sha }}
+          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/frontend:latest ghcr.io/xingrong-chen1/llm-pneumonia-api/frontend:${{ github.sha }}
 
       - name: Push the Docker image
         run: |
