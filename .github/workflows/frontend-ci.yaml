@@ -19,10 +19,10 @@ jobs:
 
       - name: Build Frontend Docker image
         run: |
-          docker build -t ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/frontend:latest -f frontend/Dockerfile ./frontend
-          docker tag ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/frontend:latest ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/frontend:${{ github.sha }}
+          docker build -t ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:latest -f frontend/Dockerfile ./frontend
+          docker tag ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:latest ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:${{ github.sha }}
 
       - name: Push the Docker image
         run: |
-          docker push ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/frontend:${{ github.sha }}
-          docker push ghcr.io/Xingrong-chen1/LLM-Pneumonia-API/frontend:latest
+          docker push ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:${{ github.sha }}
+          docker push ghcr.io/Xingrong-chen1/llm-pneumonia-api/frontend:latest
