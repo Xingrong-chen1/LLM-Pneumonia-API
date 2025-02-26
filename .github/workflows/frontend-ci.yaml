@@ -14,6 +14,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Log in to GitHub Container Registry (GHCR)
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u xingrong-chen1 --password-stdin
+
       - name: Build Frontend Docker image
         run: |
           docker build -t ghcr.io/xingrong-chen1/llm-pneumonia-api/frontend:latest -f frontend/Dockerfile ./frontend

@@ -1,9 +1,7 @@
-name: backend CI/CD
+name: Build, Test, and Push Backend Docker Image
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
     branches: ["main"]
 
 jobs:
@@ -14,21 +12,25 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build Backend Docker image
-        run: |
-          docker build -t ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest -f backend/dockerfile ./backend
-          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:${{ github.sha }}
-
-      - name: Log in to the registry
+      - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Backend Docker Image
+        run: |
+          docker build -t ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest -f backend/Dockerfile ./backend
+          docker tag ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:${{ github.sha }}
 
       - name: Run Container Structure Tests (CST)
         run: |
           curl -LO https://github.com/GoogleContainerTools/container-structure-test/releases/latest/download/container-structure-test-linux-amd64
           chmod +x container-structure-test-linux-amd64
           sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+          container-structure-test test --image ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest --config backend/tests/backend-cst.yaml
 
       - name: Push the Docker image
         run: |
           docker push ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:${{ github.sha }}
           docker push ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest
+
+      - name: Restart Containers
+        run: docker-compose up -d

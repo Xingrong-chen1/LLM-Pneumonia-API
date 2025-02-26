@@ -5,7 +5,7 @@ import io
 from PIL import Image
 
 
-API_URL = os.getenv("BACKEND_URL", "http://localhost:8000/api/predict")
+API_URL = os.getenv("BACKEND_URL","http://172.18.0.2:8000/api/predict")
 
 
 st.title("Pneumonia Detection App")
