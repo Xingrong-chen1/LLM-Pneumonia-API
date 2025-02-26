@@ -47,4 +47,5 @@ http://localhost:8501
 ```bash
 curl -X POST "http://localhost:8000/api/predict" -F "file=@test_image.png"
 ```
+![test_image](https://github.com/user-attachments/assets/435daaa1-d5c1-4dec-9ae4-6876a143c1a4)
 
