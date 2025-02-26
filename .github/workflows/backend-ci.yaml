@@ -33,4 +33,4 @@ jobs:
           docker push ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest
 
       - name: Restart Containers
-        run: docker-compose up -d
+        run: docker compose up -d
