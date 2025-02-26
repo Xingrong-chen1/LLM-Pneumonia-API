@@ -25,7 +25,7 @@ jobs:
           curl -LO https://github.com/GoogleContainerTools/container-structure-test/releases/latest/download/container-structure-test-linux-amd64
           chmod +x container-structure-test-linux-amd64
           sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
-          container-structure-test test --image ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest --config backend/tests/backend-cst.yaml
+          container-structure-test test --image ghcr.io/xingrong-chen1/llm-pneumonia-api/backend:latest --config backend/tests/cst-basic.yaml
 
       - name: Push the Docker image
         run: |
