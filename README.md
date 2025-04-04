@@ -28,7 +28,7 @@ This project implements a **Machine Learning model** for pneumonia detection fro
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/llm-pneumonia-api.git
+git clone https://github.com/Xingrong-chen1/llm-pneumonia-api.git
 cd llm-pneumonia-api
 ```
 
